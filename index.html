@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrimeTech Digital Solutions | Your Digital Solutions Partner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="assets/logo.jpg" alt="PrimeTech Digital Solutions logo">
+    </div>
+    <button class="nav active" data-page="dashboard">📊 Dashboard</button>
+    <button class="nav" data-page="pos">🛒 Point of Sale</button>
+    <button class="nav" data-page="products">📦 Products & Stock</button>
+    <button class="nav" data-page="customers">👥 Customers</button>
+    <button class="nav" data-page="services">💻 Cyber Services</button>
+    <button class="nav" data-page="reports">📈 Reports</button>
+    <button class="nav" data-page="settings">⚙️ Settings</button>
+    <button id="backupBtn" class="nav">⬇️ Backup Data</button>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div>
+        <h1 id="pageTitle">Business Dashboard</h1>
+        <p>PrimeTech Digital Solutions — Your Digital Solutions Partner.</p>
+      </div>
+      <div class="header-actions">
+        <span id="today"></span>
+        <button id="menuBtn">☰</button>
+      </div>
+    </header>
+
+    <section id="dashboard" class="page active-page">
+      <div class="cards">
+        <article class="card"><span>Today's Sales</span><strong id="todaySales">KSh 0</strong></article>
+        <article class="card"><span>Total Revenue</span><strong id="totalRevenue">KSh 0</strong></article>
+        <article class="card"><span>Products</span><strong id="productCount">0</strong></article>
+        <article class="card"><span>Low Stock</span><strong id="lowStockCount">0</strong></article>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <h2>Recent Sales</h2>
+          <div id="recentSales"></div>
+        </section>
+        <section class="panel">
+          <h2>Low Stock Alerts</h2>
+          <div id="lowStockList"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="pos" class="page">
+      <div class="pos-layout">
+        <section class="panel">
+          <h2>Sell Products</h2>
+          <div class="form-row">
+            <select id="saleProduct"></select>
+            <input id="saleQty" type="number" min="1" value="1">
+            <button id="addToCart" class="primary">Add to Cart</button>
+          </div>
+          <h3>Cart</h3>
+          <div id="cart"></div>
+          <div class="checkout">
+            <strong>Total: <span id="cartTotal">KSh 0</span></strong>
+            <input id="customerName" placeholder="Customer name (optional)">
+            <select id="paymentMethod">
+              <option>Cash</option><option>M-Pesa</option><option>Card</option><option>Credit</option>
+            </select>
+            <button id="checkoutBtn" class="primary">Complete Sale</button>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Cyber Services</h2>
+          <div class="service-grid">
+            <button class="service-btn" data-service="Printing" data-price="10">Printing — KSh 10</button>
+            <button class="service-btn" data-service="Photocopy" data-price="5">Photocopy — KSh 5</button>
+            <button class="service-btn" data-service="Scanning" data-price="20">Scanning — KSh 20</button>
+            <button class="service-btn" data-service="Lamination" data-price="50">Lamination — KSh 50</button>
+            <button class="service-btn" data-service="Typing" data-price="100">Typing — KSh 100</button>
+            <button class="service-btn" data-service="Online Application" data-price="200">Online Application — KSh 200</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="products" class="page">
+      <section class="panel">
+        <div class="panel-head"><h2>Inventory Management</h2><button id="seedBtn">Load Sample Stock</button></div>
+        <form id="productForm" class="form-grid">
+          <input id="pName" placeholder="Product name" required>
+          <select id="pCategory"><option>Bookshop</option><option>Stationery</option><option>Computer Accessory</option><option>Cyber Service</option><option>Other</option></select>
+          <input id="pCost" type="number" min="0" placeholder="Buying price" required>
+          <input id="pPrice" type="number" min="0" placeholder="Selling price" required>
+          <input id="pStock" type="number" min="0" placeholder="Quantity in stock" required>
+          <input id="pReorder" type="number" min="0" value="5" placeholder="Reorder level" required>
+          <button class="primary" type="submit">Add Product</button>
+        </form>
+        <input id="productSearch" class="search" placeholder="Search products...">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Name</th><th>Category</th><th>Cost</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead>
+            <tbody id="productTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section id="customers" class="page">
+      <section class="panel">
+        <h2>Customer Management</h2>
+        <form id="customerForm" class="form-row">
+          <input id="cName" placeholder="Customer name" required>
+          <input id="cPhone" placeholder="Phone number">
+          <button class="primary">Add Customer</button>
+        </form>
+        <div id="customerList"></div>
+      </section>
+    </section>
+
+    <section id="services" class="page">
+      <section class="panel">
+        <h2>Manage Digital Services</h2>
+        <p>Configure services such as printing, photocopying, scanning, typing, online applications, CV writing and more.</p>
+        <div id="serviceList"></div>
+      </section>
+    </section>
+
+    <section id="reports" class="page">
+      <div class="cards">
+        <article class="card"><span>Sales Transactions</span><strong id="transactionCount">0</strong></article>
+        <article class="card"><span>Estimated Gross Profit</span><strong id="profitTotal">KSh 0</strong></article>
+        <article class="card"><span>Inventory Value</span><strong id="inventoryValue">KSh 0</strong></article>
+      </div>
+      <section class="panel">
+        <div class="panel-head"><h2>Sales History</h2><button id="printReport">Print Report</button></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Date</th><th>Customer</th><th>Items</th><th>Payment</th><th>Total</th></tr></thead>
+          <tbody id="salesTable"></tbody>
+        </table></div>
+      </section>
+    </section>
+
+    <section id="settings" class="page">
+      <section class="panel">
+        <h2>Business Settings</h2>
+        <form id="settingsForm" class="form-grid">
+          <input id="businessName" value="PrimeTech Digital Solutions">
+          <input id="businessPhone" placeholder="Business phone">
+          <input id="businessEmail" placeholder="Business email">
+          <input id="businessLocation" placeholder="Business location">
+          <button class="primary">Save Settings</button>
+          <button type="button" id="resetBtn" class="danger">Reset All Local Data</button>
+        </form>
+        <p class="note">This HTML/CSS/JavaScript version stores data in the browser using LocalStorage. The included database.sql provides a MySQL structure for a future PHP/Node.js backend.</p>
+      </section>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
